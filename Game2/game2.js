@@ -3,7 +3,7 @@ function game2Preload(){
 }
 
 function game2Setup(){
-  background('rgba(0,255,0, 0.25)');
+  background(181,215,168);
   currentActivity = 2;
   
   // Hide the Activity 2 button, show all the other buttons
@@ -15,7 +15,7 @@ function game2Setup(){
 }
 
 function game2Draw(){
-  background('rgba(0,255,0, 0.25)');
+  background(181,215,168);
   
   fill('black');
   text('Activity 2 goes here', 200, 200);

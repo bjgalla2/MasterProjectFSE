@@ -3,7 +3,7 @@ function game4Preload(){
 }
 
 function game4Setup(){
-  background("white");
+  background(181,215,168);
   currentActivity = 4;
   
   // Hide the Activity 4 button, show all the other buttons
@@ -15,14 +15,14 @@ function game4Setup(){
 }
 
 function game4Draw(){
-  background("white");
+  background(181,215,168);
   
-  fill("white");
+  
   rect(10, 10, 100, 25);
-  fill("black");
+  
   text("Home Page", 25, 25);
   
-  fill('black');
+  
   text('Activity 4 goes here', 200, 200);
 }
 
