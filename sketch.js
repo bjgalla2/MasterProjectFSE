@@ -18,7 +18,7 @@ function preload(){
 }
 
 function switchToMM(){
-  background(220);
+  background(181,215,168);
   currentActivity = 0;
   
   // Hide the home page button, show the activity buttons
@@ -32,19 +32,19 @@ function switchToMM(){
 
 function setup() {
   createCanvas(400, 400);
-  background(220);
+  background(181,215,168);
   menuButton = createButton('Home');
   menuButton.position(310, 310);
   menuButton.mousePressed(switchToMM);
   menuButton.hide();
   
   game1Button = createButton('Math');
-  game1Button.position(80, 250);
+  game1Button.position(60, 250);
   game1Button.mousePressed(game1Setup);
   game1Button.show();
   
   game2Button = createButton('Tracing');
-  game2Button.position(80, 300);
+  game2Button.position(60, 300);
   game2Button.mousePressed(game2Setup);
   game2Button.show();
   
@@ -59,7 +59,7 @@ function setup() {
   game4Button.show();
 
   game4Button = createButton('Color Matching');
-  game4Button.position(140, 350);
+  game4Button.position(130, 350);
   game4Button.mousePressed(game4Setup);
   game4Button.show();
 }
@@ -89,10 +89,13 @@ function draw() {
 }
 
 function mainMenu(){
-  background(220);
+  background(181,215,168);
   
   fill('black');
-  text('Brain Game', 160, 90);
+  textSize(30);
+  text('Brain Game', 110, 90);
+  
+  
   
 }
 
