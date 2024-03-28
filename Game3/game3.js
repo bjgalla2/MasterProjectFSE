@@ -20,6 +20,6 @@ function game3Setup(){
 }
 
 function game3Draw(){
-  
+  text('Typing', 200, 200);
  
 }

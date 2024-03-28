@@ -1,4 +1,4 @@
-let owlImage;
+
 
 function game1Preload(){
   

@@ -19,6 +19,7 @@ function preload(){
 
 function switchToMM(){
   background(181,215,168);
+  
   currentActivity = 0;
   
   // Hide the home page button, show the activity buttons

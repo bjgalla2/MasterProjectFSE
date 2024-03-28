@@ -18,7 +18,7 @@ function game2Draw(){
   background(181,215,168);
   
   fill('black');
-  text('Activity 2 goes here', 200, 200);
+  text('Tracing', 200, 200);
 }
 
 function game2MousePressed(){

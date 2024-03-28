@@ -23,7 +23,7 @@ function game4Draw(){
   text("Home Page", 25, 25);
   
   
-  text('Activity 4 goes here', 200, 200);
+  text('Puzzle', 200, 200);
 }
 
 /*****
