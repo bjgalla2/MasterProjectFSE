@@ -59,10 +59,12 @@ function setup() {
   game4Button.mousePressed(game4Setup);
   game4Button.show();
 
-  game4Button = createButton('Color Matching');
-  game4Button.position(130, 350);
-  game4Button.mousePressed(game4Setup);
-  game4Button.show();
+  game5Button = createButton('Color Matching');
+  game5Button.position(130, 350);
+  game5Button.mousePressed(game4Setup);
+  game5Button.show();
+
+
 }
 
 
@@ -112,7 +114,7 @@ function mousePressed(){
       game2MousePressed();
       break;
     case 4: 
-      game4MousePressed();
+     game4MousePressed();
       break;
   }
 }
