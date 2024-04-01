@@ -1,4 +1,4 @@
-
+let input;
 
 function game3Preload(){
   
@@ -18,8 +18,17 @@ function game3Setup(){
   
   
 }
+  function game3Draw(){
+  text('Type the given sentence', 39, 50);
+  text('A B C D E F G H I J K L M N ',10,150);
 
-function game3Draw(){
-  text('Typing', 200, 200);
+  input = createInput();
+  input.position(100, 200);
+
+  let button = createButton('Submit');
+  button.position(input.x + input.width + 1, 250);
+  button.mousePressed(processInput);
+  
+  textAlign(LEFT);
  
 }
