@@ -31,30 +31,56 @@ function game1Setup(){
 
 function game1Draw()
 {
- 
-    background(181,215,168);
-    circle(180, 50, 30);
-    rect(30, 200,20,20,20 );
-    rect(180, 200, 20,20, 20);
-    rect(300,200, 20, 20, 20);
+  background(181,215,168);
   
+  
+  headCircle();
+  rectangleOne();
+  rectangleTwo();
+  rectangleThree();
+        
+}
+
+function headCircle()
+{
+  circle(200,67,100);
+  textSize(70);
+  textAlign(CENTER, CENTER); 
+  fill("white");
+  text("5", 200 , 70);
+  fill("black");
+}
+
+function rectangleOne()
+{
+  rect(30, 200,55,60, 20 );
+  textSize(50);
+  textAlign(CENTER, CENTER); 
+  fill("white");
+  text("1", 55, 235);
+  fill("black");
     
-    textSize(10);
-    textAlign(CENTER, CENTER); 
-    text("5", 930, 300);
+}
+
+function rectangleTwo()
+{
   
-  
-    textSize(10);
-    textAlign(CENTER, CENTER); 
-    text("1", 1450, 800);
-  
-    textSize(10);
-    textAlign(CENTER, CENTER); 
-    text("2", 850, 800);
-  
-    textSize(10);
-    textAlign(CENTER, CENTER); 
-    text("3", 25, 80);
-  
-  
+  rect(165,200,55 ,60 , 20);
+  textSize(50);
+  textAlign(CENTER, CENTER); 
+  fill("white");
+  text("2", 192, 235);
+  fill("black");
+
+}
+
+function rectangleThree()
+{
+  rect(300,200, 55, 60,20 );
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  fill("white");
+  text("3", 328, 235);
+  fill("black");
+
 }
