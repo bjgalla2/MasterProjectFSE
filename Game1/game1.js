@@ -11,7 +11,7 @@ let selectedNumber2 ;
 let tryAgainButton;
 
 
-function setup() {
+function game1Setup() {
   createCanvas(400, 400);
   background(181, 215, 168);
 
@@ -45,7 +45,7 @@ function setup() {
 
 }
 
-function draw() {
+function game1Draw() {
 
   headCircle();
   rectangleOne();
