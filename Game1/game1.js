@@ -12,8 +12,14 @@ let tryAgainButton;
 
 
 function game1Setup() {
-  createCanvas(400, 400);
+  //createCanvas(400, 400);
   background(181, 215, 168);
+  currentActivity = 1;
+  menuButton.hide();
+  game1Button.hide();
+  game2Button.hide();
+  game3Button.hide();
+  game4Button.hide();
 
   circleNumber = floor(random(2, 11));
   rectOneValue = circleNumber - floor(random(1, 2));

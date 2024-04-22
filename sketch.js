@@ -28,7 +28,7 @@ function switchToMM(){
   game2Button.show();
   game3Button.show();
   game4Button.show();
-  game5Button.show();
+  
 }
 
 function setup() {
