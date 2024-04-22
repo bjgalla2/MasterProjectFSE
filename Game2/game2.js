@@ -110,7 +110,7 @@ function game2Level1(){
     // Time's up, stop the game
     gameEnded = true;
     clearInterval(timerInterval);
-    //noLoop();
+    noLoop();
     fill(255, 0, 0);
     text("Time's up!", 150, 150);
   }
@@ -118,6 +118,7 @@ function game2Level1(){
 
 function game2Level2(){
   background(181,215,168);
+  
 
 }
 
