@@ -1,86 +1,176 @@
+let circleNumber;
+let rectOneValue;
+let rectTwoValue;
+let rectThreeValue;
+let rectOneButton;
+let rectTwoButton;
+let rectThreeButton;
+let submitButton;
+let selectedNumber1 = null;
+let selectedNumber2 ;
+let tryAgainButton;
 
 
-function game1Preload(){
+function setup() {
+  createCanvas(400, 400);
+  background(181, 215, 168);
+
+  circleNumber = floor(random(2, 11));
+  rectOneValue = circleNumber - floor(random(1, 2));
+  rectTwoValue = floor(random(1, 11));
+  rectThreeValue = abs(circleNumber - rectOneValue);
+
+  rectOneButton = createButton("Select");
   
+  rectTwoButton = createButton("Select");
+  rectThreeButton = createButton("Select");
+  submitButton = createButton("Submit");
+
+  rectOneButton.position(30, 280);
+  rectTwoButton.position(165, 280);
+  rectThreeButton.position(300, 280);
+  submitButton.position(200, 350);
+
+  tryAgainButton = createButton("Try Again");
+  tryAgainButton.position(200, 400);
+  tryAgainButton.mousePressed(tryAgain);
+
+  rectOneButton.mousePressed(rectangleOneMousePress);
+  
+  rectTwoButton.mousePressed(rectangleTwoMousePress);
+  
+  rectThreeButton.mousePressed(rectangleThreeMousePress);
+
+  submitButton.mousePressed(checkMath);
+
 }
 
-function game1Setup(){
-  background('#fae');
-  currentActivity = 1;
-  
-  // Hide the Game 1 button, show all the other navigation buttons
-  menuButton.show();
-  game1Button.hide();
-  game2Button.hide();
-  game3Button.hide();
-  game4Button.hide();
-  game5Button.hide();
-  
-  
-  // Set the size of the owl image
-  
-}
+function draw() {
 
-/*function game1Draw(){
-  background('#fae');
-  
-  fill('black');
-  text('Activity 1 goes here', 200, 200);
-  
-}*/
-
-function game1Draw()
-{
-  background(181,215,168);
-  
-  
   headCircle();
   rectangleOne();
   rectangleTwo();
   rectangleThree();
-        
 }
 
-function headCircle()
-{
-  circle(200,67,100);
+function headCircle() {
+  fill("white");
+  ellipse(200, 67, 100);
+  fill("black");
   textSize(70);
-  textAlign(CENTER, CENTER); 
-  fill("white");
-  text("5", 200 , 70);
-  fill("black");
+  textAlign(CENTER, CENTER);
+  text(circleNumber, 200, 70);
 }
 
-function rectangleOne()
-{
-  rect(30, 200,55,60, 20 );
-  textSize(50);
-  textAlign(CENTER, CENTER); 
+function rectangleOne() {
   fill("white");
-  text("1", 55, 235);
+  rect(30, 200, 55, 60, 20);
   fill("black");
-    
-}
-
-function rectangleTwo()
-{
-  
-  rect(165,200,55 ,60 , 20);
-  textSize(50);
-  textAlign(CENTER, CENTER); 
-  fill("white");
-  text("2", 192, 235);
-  fill("black");
-
-}
-
-function rectangleThree()
-{
-  rect(300,200, 55, 60,20 );
   textSize(50);
   textAlign(CENTER, CENTER);
-  fill("white");
-  text("3", 328, 235);
-  fill("black");
+  text(rectOneValue, 55, 235);
+}
 
+function rectangleTwo() {
+  fill("white");
+  rect(165, 200, 55, 60, 20);
+  fill("black");
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(rectTwoValue, 192, 235);
+}
+
+function rectangleThree() {
+  fill("white");
+  rect(300, 200, 55, 60, 20);
+  fill("black");
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(rectThreeValue, 328, 235);
+}
+
+
+
+function checkMath() {
+
+  if (selectedNumber1 + selectedNumber2 == circleNumber) {
+    fill("green");
+    ellipse(200, 67, 100);
+    fill("white");
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    //text("Correct!", 200, 67);
+    alert("Correct");
+  } else {
+    fill("red");
+    ellipse(200, 67, 100);
+    fill("white");
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    //text("Incorrect!", 200, 67);
+    alert("incorrect");
+  }
+}
+
+
+function rectangleOneMousePress()
+{
+  rectOneButton.attribute("disabled", true);
+  
+  if(selectedNumber1 == null)
+    {
+      selectedNumber1 = rectOneValue;
+    }
+    else
+    {
+      selectedNumber2 = rectOneValue;
+    } 
+}
+function rectangleTwoMousePress()
+{
+  rectTwoButton.attribute("disabled", true);
+  
+  if(selectedNumber1 == null)
+  {
+    selectedNumber1 = rectTwoValue;
+  }
+  else
+  {
+    selectedNumber2 = rectTwoValue;
+  } 
+
+}
+
+function rectangleThreeMousePress()
+{
+  rectThreeButton.attribute("disabled", true);
+  
+    if(selectedNumber1 == null)
+    {
+      selectedNumber1 = rectThreeValue;
+    }
+    else
+    {
+      selectedNumber2 = rectThreeValue;
+    } 
+}
+
+function tryAgain() {
+  
+  selectedNumber1 = null;
+  selectedNumber2 = null;
+  
+  // refresh the numbers and reset the button states
+  circleNumber = floor(random(2, 11));
+  rectOneValue = circleNumber - floor(random(1, 2));
+  rectTwoValue = floor(random(1, 11));
+  rectThreeValue = abs(circleNumber - rectOneValue);
+  
+  rectOneButton.removeAttribute('disabled');
+  rectTwoButton.removeAttribute('disabled');
+  rectThreeButton.removeAttribute('disabled');
+
+
+  // redraw the canvas to show the new numbers
+  redraw();
 }
