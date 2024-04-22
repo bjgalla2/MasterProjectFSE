@@ -4,8 +4,9 @@ let timer = 10; // 1 minutes in seconds
 let gameStarted = false;
 let gameEnded = false;
 let timerInterval; // Declare timerInterval globally
-let gameOver
-
+let gameOver;
+let game2CurrentLevel;
+let game2Level2Button;
 
 function game2Setup(){
   background(181,215,168);
@@ -24,9 +25,35 @@ function game2Setup(){
   game3Button.hide();
   game4Button.hide();
   game5Button.hide();
+
+  game2CurrentLevel = 1;
+
+  game2Level2Button = createButton('Level 2');
+  game2Level2Button.position(60, 250);
+  game2Level2Button.mousePressed(setupGame2Level2);
+  game2Level2Button.hide();
+}
+
+function setupGame2Level2(){
+  menuButton.show();
+  game2Level2Button.hide();
+  game2CurrentLevel = 2;
+  timer = 10; // 1 minutes in seconds
+  gameStarted = false;
+  gameEnded = false;
 }
 
 function game2Draw(){
+  switch(game2CurrentLevel){
+    case 1: 
+      game2Level1();
+      break;
+    case 2:
+      game2Level2();
+      break;
+  }
+}
+function game2Level1(){
   background(181,215,168);
   
   if (drawing) {
@@ -34,6 +61,7 @@ function game2Draw(){
     path.push(point);
   }
   
+  fill(255, 0, 0);
   beginShape();
   for (let i = 0; i < path.length; i++) {
     vertex(path[i].x, path[i].y);
@@ -77,14 +105,20 @@ function game2Draw(){
     textSize(20);
     fill(0, 255, 0); 
     text("Congratulations! You've reached the end!", 200, 350);
+    game2Level2Button.show();
   } else if (timer == 0) {
     // Time's up, stop the game
     gameEnded = true;
     clearInterval(timerInterval);
-    noLoop();
+    //noLoop();
     fill(255, 0, 0);
     text("Time's up!", 150, 150);
   }
+}
+
+function game2Level2(){
+  background(181,215,168);
+
 }
 
 function mousePressed() {
@@ -96,15 +130,23 @@ function mousePressed() {
 
 function mouseReleased() {
   drawing = false;
-  if (gameStarted && !gameEnded) {
-    drawing = false;
-    // Check if the mouse cursor reached the end point
-    let distanceToEnd = dist(mouseX, mouseY, 350, 300);
-    if (distanceToEnd < 25) {
-      gameEnded = true;
-      clearInterval(timerInterval); // Stop the timer
-      noLoop();
-    }
+
+  switch(game2CurrentLevel){
+    case 1: 
+      if (gameStarted && !gameEnded) {
+        drawing = false;
+        // Check if the mouse cursor reached the end point
+        let distanceToEnd = dist(mouseX, mouseY, 350, 300);
+        if (distanceToEnd < 25) {
+          gameEnded = true;
+          clearInterval(timerInterval); // Stop the timer
+          //noLoop();
+        }
+      }
+      break;
+    case 2:
+      
+      break;
   }
 }
 
@@ -115,7 +157,7 @@ function decrementTimer() {
     // Time's up, stop the game
     gameEnded = true;
     clearInterval(timerInterval);
-    noLoop();
+    //noLoop();
     fill(255, 0, 0);
     text("Time's up!", 150, 150);
   }
