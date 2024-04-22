@@ -10,7 +10,9 @@ let selectedNumber1 = null;
 let selectedNumber2 ;
 let tryAgainButton;
 
+function game1Preload(){
 
+}
 function game1Setup() {
   //createCanvas(400, 400);
   background(181, 215, 168);
