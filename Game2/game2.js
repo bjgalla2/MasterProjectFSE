@@ -39,6 +39,7 @@ function setupGame2Level2(){
   game2Level2Button.hide();
   game2CurrentLevel = 2;
   timer = 10; // 1 minutes in seconds
+  timerInterval = setInterval(decrementTimer, 1000); 
   gameStarted = false;
   gameEnded = false;
 }
@@ -110,7 +111,7 @@ function game2Level1(){
     // Time's up, stop the game
     gameEnded = true;
     clearInterval(timerInterval);
-    //noLoop();
+    noLoop();
     fill(255, 0, 0);
     text("Time's up!", 150, 150);
   }
@@ -118,8 +119,66 @@ function game2Level1(){
 
 function game2Level2(){
   background(181,215,168);
+  
+  if (drawing) {
+    let point = createVector(mouseX, mouseY);
+    path.push(point);
+  }
+  
+  fill(255, 0, 0);
+  beginShape();
+  for (let i = 0; i < path.length; i++) {
+    vertex(path[i].x, path[i].y);
+  }
+  endShape();
 
+  // Display the timer
+  textSize(32);
+  text("Time remaining: " + timer, 10, 50);
+
+  // Draw the start and end points
+  fill(0, 255, 0); // Green for start
+  ellipse(100, 300, 20); // Modify start point position
+  fill(255, 0, 0); // Red for end
+  ellipse(350, 100, 20); // Modify end point position
+
+  // Check if the game has started or ended
+  if (!gameStarted && dist(mouseX, mouseY, 100, 300) < 25) { // Modify start point position
+    gameStarted = true;
+  }
+  if (gameStarted && !gameEnded && dist(mouseX, mouseY, 350, 100) < 25) { // Modify end point position
+    gameEnded = true;
+  }
+  if (gameStarted && !gameEnded) {
+    strokeWeight(2);
+    stroke(0); // Black color for the dotted line
+    let distance = dist(100, 300, 350, 100); // Modify end point position
+    let segments = distance / 10; // Adjust segment length as needed
+    let dx = (350 - 100) / segments; // Modify end point position
+    let dy = (100 - 300) / segments; // Modify end point position
+    for (let i = 0; i < segments; i += 2) {
+      let x1 = 100 + i * dx; // Modify start point position
+      let y1 = 300 + i * dy; // Modify start point position
+      let x2 = 100 + (i + 1) * dx; // Modify start point position
+      let y2 = 300 + (i + 1) * dy; // Modify start point position
+      line(x1, y1, x2, y2);
+    }
+  }
+  if (gameEnded) {
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    fill(0, 255, 0); 
+    text("Congratulations! You've reached the end!", 200, 350);
+  } else if (timer == 0) {
+    // Time's up, stop the game
+    gameEnded = true;
+    clearInterval(timerInterval);
+    noLoop();
+    fill(255, 0, 0);
+    text("Time's up!", 150, 150);
+  }
 }
+
 
 function mousePressed() {
   if (gameStarted && !gameEnded) {
@@ -145,6 +204,16 @@ function mouseReleased() {
       }
       break;
     case 2:
+      if (gameStarted && !gameEnded) {
+        drawing = false;
+        // Check if the mouse cursor reached the end point
+        let distanceToEnd = dist(mouseX, mouseY, 350, 100);
+        if (distanceToEnd < 25) {
+          gameEnded = true;
+          clearInterval(timerInterval); // Stop the timer
+          //noLoop();
+        }
+      }
       
       break;
   }
@@ -157,9 +226,8 @@ function decrementTimer() {
     // Time's up, stop the game
     gameEnded = true;
     clearInterval(timerInterval);
-    //noLoop();
+    noLoop();
     fill(255, 0, 0);
     text("Time's up!", 150, 150);
   }
 }
-
