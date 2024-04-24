@@ -26,6 +26,7 @@ function game1Setup() {
   game4Button.hide();
 
 
+
   if(subtractionLevel < 2)
   {
     circleNumber = floor(random(2, 11));
@@ -59,9 +60,9 @@ function game1Setup() {
   tryAgainButton.position(300, 350);
   tryAgainButton.mousePressed(tryAgain);
 
-  subtractionButton = createButton("Subtraction");
+  /*subtractionButton = createButton("Subtraction");
   subtractionButton.position(30, 50);
-  subtractionButton.mousePressed(subtraction);
+  subtractionButton.mousePressed(subtraction); */
   
 
   
