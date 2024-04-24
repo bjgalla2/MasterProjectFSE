@@ -9,22 +9,41 @@ let submitButton;
 let selectedNumber1 = null;
 let selectedNumber2 ;
 let tryAgainButton;
+let subtractionLevel = 0;
 
+function game1Preload(){
 
+}
 function game1Setup() {
   //createCanvas(400, 400);
   background(181, 215, 168);
   currentActivity = 1;
-  menuButton.hide();
+  menuButton.show();
   game1Button.hide();
   game2Button.hide();
   game3Button.hide();
   game4Button.hide();
+  game4Button.hide();
 
-  circleNumber = floor(random(2, 11));
-  rectOneValue = circleNumber - floor(random(1, 2));
-  rectTwoValue = floor(random(1, 11));
-  rectThreeValue = abs(circleNumber - rectOneValue);
+
+
+  if(subtractionLevel < 2)
+  {
+    circleNumber = floor(random(2, 11));
+    rectOneValue = circleNumber - floor(random(1, 2));
+    rectTwoValue = floor(random(1, 11));
+    rectThreeValue = abs(circleNumber - rectOneValue);
+  }
+  else if(subtractionLevel >2)
+  {
+    circleNumber = floor(random(2, 11));
+    rectOneValue = circleNumber - floor(random(1, 2));
+    rectTwoValue = floor(random(1, 11));
+    rectThreeValue = 20;
+  }
+
+  
+  
 
   rectOneButton = createButton("Select");
   
@@ -38,8 +57,16 @@ function game1Setup() {
   submitButton.position(200, 350);
 
   tryAgainButton = createButton("Try Again");
-  tryAgainButton.position(200, 400);
+  tryAgainButton.position(300, 350);
   tryAgainButton.mousePressed(tryAgain);
+
+  /*subtractionButton = createButton("Subtraction");
+  subtractionButton.position(30, 50);
+  subtractionButton.mousePressed(subtraction); */
+  
+
+  
+ 
 
   rectOneButton.mousePressed(rectangleOneMousePress);
   
@@ -48,6 +75,7 @@ function game1Setup() {
   rectThreeButton.mousePressed(rectangleThreeMousePress);
 
   submitButton.mousePressed(checkMath);
+  
 
 }
 
@@ -75,6 +103,7 @@ function rectangleOne() {
   textSize(50);
   textAlign(CENTER, CENTER);
   text(rectOneValue, 55, 235);
+
 }
 
 function rectangleTwo() {
@@ -84,6 +113,7 @@ function rectangleTwo() {
   textSize(50);
   textAlign(CENTER, CENTER);
   text(rectTwoValue, 192, 235);
+
 }
 
 function rectangleThree() {
@@ -93,6 +123,10 @@ function rectangleThree() {
   textSize(50);
   textAlign(CENTER, CENTER);
   text(rectThreeValue, 328, 235);
+
+  
+ 
+
 }
 
 
@@ -179,4 +213,14 @@ function tryAgain() {
 
   // redraw the canvas to show the new numbers
   redraw();
+}
+
+function subtraction()
+{
+  if(subtractionLevel <= 2)
+  {
+    subtractionLevel++;
+
+    redraw();
+  }
 }
